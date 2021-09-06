@@ -52,15 +52,16 @@
 
 ## shipping_addresses テーブル
 
-| Column        | Type       | Options                        |
-| ------------- | ---------- | ------------------------------ |
-| post_code     | string     | null: false                    |
-| prefecture    | string     | null: false                    |
-| city          | string     | null: false                    |
-| address       | string     | null: false                    |
-| building_name | string     |                                |
-| tel           | string     | null: false                    |
+| Column          | Type       | Options                        |
+| --------------- | ---------- | ------------------------------ |
+| post_code       | string     | null: false                    |
+| prefecture_id   | integer    | null: false                    |
+| city            | string     | null: false                    |
+| address         | string     | null: false                    |
+| building_name   | string     |                                |
+| tel             | string     | null: false                    |
+| purchase_record | references | null: false, foreign_key: true |
 
 ### Association
 
-- belongs_to :purchase_records
+- belongs_to :purchase_record
