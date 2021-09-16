@@ -6,13 +6,13 @@ class Item < ApplicationRecord
   belongs_to :prefecture
   belongs_to :delivery_day
 
-  with_options presence: true
+  with_options presence: true do
   validates :image, 
   validates :product_name, length: { maximum:40 }
   validates :description, length: { maximum:1000 }
   end
 
-  with_options numericaleity: { other_than: 1 , message: "can't be blank"}
+  with_options numericaleity: { other_than: 1 , message: "can't be blank"} do
   validates :category
   validates :status
   validates :delivery_fee
