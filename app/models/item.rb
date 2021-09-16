@@ -6,22 +6,21 @@ class Item < ApplicationRecord
   belongs_to :prefecture
   belongs_to :delivery_day
 
-  with_options presence: true do
-  validates :image, 
-  validates :product_name, length: { maximum:40 }
-  validates :description, length: { maximum:1000 }
-  end
+  validates :image, presence: true  
+  validates :product_name, presence: true, length: { maximum:40 }
+  validates :description, presence: true, length: { maximum:1000 }
 
-  with_options numericaleity: { other_than: 1 , message: "can't be blank"} do
-  validates :category
-  validates :status
-  validates :delivery_fee
-  validates :prefecture
-  validates :delivery_day
+  with_options numericality: { other_than: 1 , message: "can't be blank"} do
+  validates :category_id
+  validates :status_id
+  validates :delivery_fee_id
+  validates :prefecture_id
+  validates :delivery_day_id
   end
 
   validates :price, numericality: { only_integer: true, greater_than:0, less_than:9999999 }
   
   has_one_attached :image
-
+  belongs_to :user
+  
 end
