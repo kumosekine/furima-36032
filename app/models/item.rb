@@ -18,7 +18,7 @@ class Item < ApplicationRecord
   validates :delivery_day_id
   end
 
-  validates :price, numericality: { only_integer: true, greater_than:0, less_than:9999999 }
+  validates :price, numericality: { only_integer: true, greater_than:300, less_than:9999999 }
   
   has_one_attached :image
   belongs_to :user
