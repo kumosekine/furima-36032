@@ -7,10 +7,10 @@ RSpec.describe Item, type: :model do
 
   describe '商品の出品' do
     context '商品出品ができる場合' do
-     it 'imageとproduct_nameとdescriptionとcategory_idとstatus_idとdelivery_fee_id
+      it 'imageとproduct_nameとdescriptionとcategory_idとstatus_idとdelivery_fee_id
         とprefecture_idとdelivery_day_idとpriceが存在していてれば出品できる' do
         expect(@item).to be_valid
-     end
+      end
     end
 
     context '商品出品ができない場合' do
@@ -57,42 +57,42 @@ RSpec.describe Item, type: :model do
       it 'priceが空では出品できない' do
         @item.price = ''
         @item.valid?
-        expect(@item.errors.full_messages).to include("Price is not a number")
+        expect(@item.errors.full_messages).to include('Price is not a number')
       end
       it 'userが紐づいていないと出品できない' do
         @item.user = nil
         @item.valid?
-        expect(@item.errors.full_messages).to include("User must exist")
+        expect(@item.errors.full_messages).to include('User must exist')
       end
       it 'priceが300以下では出品できない' do
         @item.price = '299'
         @item.valid?
-        expect(@item.errors.full_messages).to include("Price must be greater than 300")
+        expect(@item.errors.full_messages).to include('Price must be greater than 300')
       end
       it 'priceが9999999以上では出品できない' do
         @item.price = '100000000'
         @item.valid?
-        expect(@item.errors.full_messages).to include("Price must be less than 9999999")
+        expect(@item.errors.full_messages).to include('Price must be less than 9999999')
       end
       it 'priceに記号が含まれていると登録できない' do
         @item.price = '300%'
         @item.valid?
-        expect(@item.errors.full_messages).to include("Price is not a number")
+        expect(@item.errors.full_messages).to include('Price is not a number')
       end
       it 'priceにアルファベットが含まれていると登録できない' do
         @item.price = '300a'
         @item.valid?
-        expect(@item.errors.full_messages).to include("Price is not a number")
+        expect(@item.errors.full_messages).to include('Price is not a number')
       end
       it 'priceに漢字が含まれていると登録できない' do
         @item.price = '300亜'
         @item.valid?
-        expect(@item.errors.full_messages).to include("Price is not a number")
+        expect(@item.errors.full_messages).to include('Price is not a number')
       end
       it 'priceにカナが含まれていると登録できない' do
         @item.price = '300ア'
         @item.valid?
-        expect(@item.errors.full_messages).to include("Price is not a number")
+        expect(@item.errors.full_messages).to include('Price is not a number')
       end
     end
   end
