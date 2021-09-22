@@ -29,9 +29,15 @@ class ItemsController < ApplicationController
   def update
     if @item.update(create_params)
       redirect_to item_path(@item.id)
-     else
+    else
       render :edit
     end
+  end
+
+  def destroy
+    item = Item.find(params[:id])
+    item.destroy
+    redirect_to root_path
   end
 
   private
@@ -47,9 +53,7 @@ class ItemsController < ApplicationController
 
   def move_to_index
     @item = Item.find(params[:id])
-    unless @item.user == current_user
-      redirect_to action: :index
-    end
+    redirect_to action: :index unless @item.user == current_user
   end
 
   def set_item
