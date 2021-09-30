@@ -55,7 +55,7 @@
 | Column          | Type       | Options                        |
 | --------------- | ---------- | ------------------------------ |
 | post_code       | string     | null: false                    |
-| prefecture_id   | references | null: false, foreign_key: true  |
+| prefecture_id   | references | null: false, foreign_key: true |
 | city            | string     | null: false                    |
 | address         | string     | null: false                    |
 | building_name   | string     |                                |
