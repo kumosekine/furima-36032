@@ -1,7 +1,11 @@
 class PurchaseRecordsController < ApplicationController
   def index
     @item = Item.find(params[:item_id])
+    if @item.purchase_record.present? 
+      redirect_to root_path
+    else
     @order = Order.new
+    end
   end
 
   def create
