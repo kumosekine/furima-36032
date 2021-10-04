@@ -1,4 +1,7 @@
 class PurchaseRecordsController < ApplicationController
+  before_action :authenticate_user!
+  before_action :redirect_root
+
   def index
     @item = Item.find(params[:item_id])
     if @item.purchase_record.present? 
@@ -33,5 +36,12 @@ class PurchaseRecordsController < ApplicationController
       card: shipping_addresses_params[:token],
       currency:'jpy'
     )
+   end
+
+   def redirect_root
+    @item = Item.find(params[:item_id])
+    if @item.user == current_user
+    redirect_to root_path
+    end
    end
 end
