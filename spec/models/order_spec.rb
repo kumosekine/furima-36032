@@ -36,7 +36,7 @@ RSpec.describe Order, type: :model do
       expect(@order.errors.full_messages).to include('Post code is invalid. Include hyphen(-)')
     end
     it 'prefecture_idが空では購入できない' do
-      @order.prefecture_id = '1'
+      @order.prefecture_id = 1
       @order.valid?
       expect(@order.errors.full_messages).to include("Prefecture can't be blank")
     end
