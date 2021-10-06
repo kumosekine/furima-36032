@@ -1,9 +1,9 @@
 class PurchaseRecordsController < ApplicationController
   before_action :authenticate_user!
+  before_action :set_item, only:[:index, :create]
   before_action :redirect_root
 
   def index
-    @item = Item.find(params[:item_id])
     if @item.purchase_record.present? 
       redirect_to root_path
     else
@@ -12,7 +12,6 @@ class PurchaseRecordsController < ApplicationController
   end
 
   def create
-    @item = Item.find(params[:item_id])
     @order = Order.new(shipping_addresses_params)
     if @order.valid?
       pay_item
@@ -38,8 +37,11 @@ class PurchaseRecordsController < ApplicationController
     )
    end
 
-   def redirect_root
+   def set_item
     @item = Item.find(params[:item_id])
+   end
+
+   def redirect_root
     if @item.user == current_user
     redirect_to root_path
     end

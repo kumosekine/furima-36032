@@ -11,7 +11,6 @@ RSpec.describe Order, type: :model do
 
    context '内容に問題がない場合' do
     it 'すべての値が正しく入力されていば購入できること' do
-      # binding.pry
       expect(@order).to be_valid
     end
     it 'building_nameは空でも購入できる' do
